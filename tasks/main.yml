@@ -15,7 +15,7 @@
   apt:
     name: "{{ locales_language_packs_present }}"
     state: "{{ apt_install_state | default('latest') }}"
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_facts['distribution'] == 'Ubuntu'
   notify: update locales
   tags:
     - configuration
@@ -26,7 +26,7 @@
   apt:
     name: "{{ locales_language_packs_absent }}"
     state: absent
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_facts['distribution'] == 'Ubuntu'
   notify: update locales
   tags:
     - configuration
